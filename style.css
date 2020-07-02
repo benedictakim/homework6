@@ -1,8 +1,15 @@
 header {
     text-align: center;
-    padding: 20px;
+    padding-bottom: 20px;
     padding-top: 20px;
     color: white;
     background-color: black;
-  }
+}
 
+.searchbutton {
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #06AED5;
+  color: white;
+}

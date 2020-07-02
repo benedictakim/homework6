@@ -11,24 +11,39 @@
 </head>
 
 <body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
     <div class="container">
-        <header>
-            <h1>Weather Dashboard</h1>
-        </header>
         <div class="row">
+            <!-- Cities Search -->
             <div class="col-4">
-                <h4>search for city</h4>
-                <div><input id="city" /><button id="search"><i class="fas fa-search"></i></button></div>
-                <ul></ul>
+                <div class="card">
+                    <h3 class="card-header">Search for a City</h3>
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="city">
+                           <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button" id="button-addon2" val="city"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    <div class="card-body">
+                        <ul id="allcities"></ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-8", div id="today">
-                <div class="row", div id="5day">
-                    <div class="col-8">
+            <!-- Weather API data results for a City -->
+            <div class="col-8">
+                <div class="card", div id="today">
+                    <div class="card-body">
+                    </div>
+                <div class="card", div id="5day">
+                    <div class="card-body">
                     </div>
                 </div>
             </div>
         <div>
     </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="./script.js"></script>
 </body>
 </html>
