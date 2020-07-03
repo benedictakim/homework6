@@ -16,10 +16,10 @@ $(document).ready(function(){
             searchweather (searchvalue)
             searchuv (searchvalue)
             rendercities (searchvalue)
-            // display5day (cityid)
+            display5day (searchvalue)
         }
     })
-    //list of searched cities - NEED TO DEBUG
+    //list of searched cities - NEED TO DEBUG DISPLAY
     function rendercities (searchvalue) {
         $("#allcities").empty();
         var citieslist = [];
@@ -54,7 +54,6 @@ $(document).ready(function(){
             };
                 window.localStorage.setItem("latlon", JSON.stringify(latlon))
                 console.log(latlon)
-            var cityid = window.localStorage.setItem(data.coord.id)
             }       
             // var imageURL = "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png"
         })
@@ -88,11 +87,10 @@ $(document).ready(function(){
         })
     } 
     //search 5day forecast of city 
-    function display5day (cityid) {
-        cityid = JSON.parse(window.localStorage.getItem('cityid'))
+    function display5day (searchvalue) {
         $.ajax({
            type:"GET",
-           url:"api.openweathermap.org/data/2.5/forecast?q=" + cityid + "&appid=33dcb1cd7bc3a96b8d8f723aa3bda2c3",
+           url:"https://api.openweathermap.org/data/2.5/forecast?q=" + searchvalue + "&appid=33dcb1cd7bc3a96b8d8f723aa3bda2c3",
            dataType: "json",
            success: function (data){
            console.log(data)
