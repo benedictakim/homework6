@@ -14,19 +14,20 @@ $(document).ready(function(){
             alert("Error: Unable to search when city is blank");
         }else{
             window.localStorage.setItem("city", searchvalue)
+            citieslist.splice(citieslist.indexOf(city), 1);
+            localStorage.setItem("weathercities", JSON.stringify(citieslist));
             searchweather (searchvalue)
             // searchuv (searchvalue)
-            rendercities (searchvalue)
+            rendercities
             display5day (searchvalue)
         }
     })
     //list of searched cities - NEED TO DEBUG DISPLAY
-    function rendercities (searchvalue) {
-        // $("#allcities").empty();
+    function rendercities () {
+        $("#allcities").empty();
         for (var i = 0; i < citieslist.length; i++) {
             var li = $("<li>");
-            listofcities = JSON.parse(window.localStorage.getItem('city', [i]));
-            console.log(city, [i])
+            listofcities = JSON.parse(window.localStorage.getItem("weathercities"));
             li.attr("allcities", citieslist[i])
             li.text(citieslist[i]);
             citieslist.prepend(li);
@@ -104,6 +105,7 @@ $(document).ready(function(){
            success: function (data){
            console.log(data)
            var h2 = $("<h2>").text("5-Day Forecast")
+           $("#5dayh2").empty();
            $("#5dayh2").append(h2)
            $("#5day").empty();
            for (var i = 0; i < data.list.length; i++) {
