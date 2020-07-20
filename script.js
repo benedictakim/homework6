@@ -16,22 +16,23 @@ $(document).ready(function(){
             window.localStorage.setItem("city", searchvalue)
             searchweather (searchvalue)
             // searchuv (searchvalue)
-            // rendercities (searchvalue)
+            rendercities (searchvalue)
             display5day (searchvalue)
         }
     })
     //list of searched cities - NEED TO DEBUG DISPLAY
-    // function rendercities (searchvalue) {
-    //     $("#allcities").empty();
-    //     for (var i = 0; i < citieslist.length; i++) {
-    //         var li = $("<li>");
-    //         listofcities = JSON.parse(window.localStorage.getItem('city', [i]));
-    //         li.attr("allcities", citieslist[i])
-    //         li.text(citieslist[i]);
-    //         citieslist.prepend(li);
-    //         console.log(listofcities[i])
-    //     }
-    // }
+    function rendercities (searchvalue) {
+        // $("#allcities").empty();
+        for (var i = 0; i < citieslist.length; i++) {
+            var li = $("<li>");
+            listofcities = JSON.parse(window.localStorage.getItem('city', [i]));
+            console.log(city, [i])
+            li.attr("allcities", citieslist[i])
+            li.text(citieslist[i]);
+            citieslist.prepend(li);
+            console.log(listofcities[i])
+        }
+    }
     //search weather of city
     function searchweather (searchvalue) {
         $.ajax({
@@ -113,8 +114,8 @@ $(document).ready(function(){
                    var datedisplay = $("<h5>").addClass("card-title").text(date)
                    var imageURL = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png"
                    var image = $("<img>").attr("src", imageURL)
-                   var temperature = $("<p>").addClass("card-text").text("Temp: "+data.list[i].main.temp)
-                   var humidity = $("<p>").addClass("card-text").text("Humidity: "+data.list[i].main.humidity)
+                   var temperature = $("<p>").addClass("card-text").text("Temp: "+data.list[i].main.temp+"℉")
+                   var humidity = $("<p>").addClass("card-text").text("Humidity: "+data.list[i].main.humidity+"%")
                    col.append(card.append(cardbody.append(datedisplay,image,temperature,humidity)))
                    $("#5day").append(col)
                }
