@@ -102,6 +102,8 @@ $(document).ready(function(){
            dataType: "json",
            success: function (data){
            console.log(data)
+           var h2 = $("<h2>").text("5-Day Forecast")
+           $("#5dayh2").append(h2)
            $("#5day").empty();
            for (var i = 0; i < data.list.length; i++) {
                if (data.list[i].dt_txt.indexOf("15:00:00")!== -1){
