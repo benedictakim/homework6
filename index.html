@@ -15,10 +15,10 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="container">
-        <div class="row">
-            <!-- Cities Search -->
-            <div class="col-4">
+    <div class="container-fluid">
+        <div class="row mt-3">
+    <!-- Cities Search -->
+            <div class="col-4" id="allcities">
                 <div class="card">
                     <h3 class="card-header">Search for a City</h3>
                         <div class="input-group mb-3">
@@ -33,12 +33,14 @@
                 </div>
             </div>
     <!-- Weather API data results for a City -->
-            <div class="col-8" id="today"></div>
-        </div>  
-        <div clas="row">
-            <div class="col-4"></div>
             <div class="col-8">
-                <div class="row", id="5day"></div>
+                <div class="container">
+                    <div class="row", id="today"></div>
+                    <div class="row hide", id="5dayh2">
+                        <h2>5-Day Forecast:</h2>
+                    </div>
+                    <div class="row", id="5day"></div>
+                </div>
             </div>
         </div>      
     </div>
