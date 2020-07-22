@@ -14,22 +14,26 @@ $(document).ready(function(){
             citieslist.splice(citieslist.indexOf(city), 1);
             localStorage.setItem("weathercities", JSON.stringify(citieslist));
             searchweather (searchvalue)
-            rendercities
+            // rendercities
             display5day (searchvalue)
         }
     })
-    //list of searched cities - NEED TO DEBUG DISPLAY
-    function rendercities () {
-        $("#allcities").empty();
-        for (var i = 0; i < citieslist.length; i++) {
-            var li = $("<li>");
-            listofcities = JSON.parse(window.localStorage.getItem("weathercities"));
-            li.attr("allcities", citieslist[i])
-            li.text(citieslist[i]);
-            citieslist.prepend(li);
-            console.log(listofcities[i])
-        }
+    function makeli (city) {
+        var li = $("<li>").addClass("list-group-item list-group-item-action").text(city);
+        $(".history").append(li);
     }
+    //list of searched cities - NEED TO DEBUG DISPLAY
+    // function rendercities () {
+    //     $("#allcities").empty();
+    //     for (var i = 0; i < citieslist.length; i++) {
+    //         var li = $("<li>");
+    //         listofcities = JSON.parse(window.localStorage.getItem("weathercities"));
+    //         li.attr("allcities", citieslist[i])
+    //         li.text(citieslist[i]);
+    //         citieslist.prepend(li);
+    //         console.log(listofcities[i])
+    //     }
+    // }
     //search weather of city
     function searchweather (searchvalue) {
         $.ajax({
@@ -37,6 +41,11 @@ $(document).ready(function(){
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchvalue + "&appid=33dcb1cd7bc3a96b8d8f723aa3bda2c3&units=imperial",
             dataType: "json",
             success: function (data){
+                if (history.indexOf(searchvalue) === -1) {
+                    history.push(city);
+                    localStorage.setItem("history", JSON.stringify(history));
+                    makeli(searchvalue);
+                }
             $("#today").empty();
             var imageURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png"
             var image = $("<img>").attr("src", imageURL)
@@ -110,6 +119,14 @@ $(document).ready(function(){
            }
            }
         })
+    }
+
+    var history = JSON.parse(window.localStorage.getItem("history")) || [];
+    if (history.length > 0) {
+        searchweather (history[history.length-1]);        
+    }
+    for (var i = 0; i < history.length; i++) {
+        makeli(history[i]);
     }
 });
 
